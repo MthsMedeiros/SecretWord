@@ -1,9 +1,6 @@
 //react
 import { useState, useEffect, useCallback, use } from 'react'
 
-//css
-import './App.css'
-
 //data
 import { wordsList } from './data/words'
 
@@ -66,7 +63,7 @@ function App() {
 
   return (
     <>
-      <div className='App'>
+      <div className='flex flex-col items-center justify-start h-screen'>
         {gameStage === 'start' && <StartScreem startGame={StartGame} />}
         {gameStage === 'game' && <GameScreem gameEnd={GameEnd} categorySelected={categorySelected} wordSelected={wordSelected} />}
 
