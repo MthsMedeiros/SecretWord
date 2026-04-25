@@ -26,6 +26,10 @@ function App() {
   let [wordSelected, setWordSelected] = useState("")
   let [categorySelected, setCategory] = useState("")
   let [letters, setLetters] = useState([])
+
+  let [life, setLife] = useState(3)
+  let [score, setScore] = useState(0)
+  let [time, setTime] = useState(90)
   
 
   function StartGame (){
@@ -42,6 +46,22 @@ function App() {
   }
 
   useEffect(() => {
+    if(gameStage !== 'game') return
+    
+    const timer = setInterval(() => {
+      setTime(prevTime => {
+        if(prevTime - 1 <= 0) {
+          GameEnd()
+          return 0
+        }
+        return prevTime - 1
+      })
+    }, 1000)
+    
+    return () => clearInterval(timer)
+  }, [gameStage])
+
+  useEffect(() => {
     if(categorySelected){
       setWordSelected(words[categorySelected][Math.floor(Math.random() * words[categorySelected].length)])
       
@@ -55,17 +75,18 @@ function App() {
     }
   }, [wordSelected])
 
-  useEffect(() => {
-    console.log(categorySelected)
-    console.log(wordSelected)
-    console.log(letters)
-  }, [categorySelected, wordSelected, letters])
+  
 
   return (
     <>
+      {/* ====== MAIN CONTAINER ====== */}
       <div className='flex flex-col items-center justify-start h-screen'>
+        
+        {/* ====== TELA DE INICIO ====== */}
         {gameStage === 'start' && <StartScreem startGame={StartGame} />}
-        {gameStage === 'game' && <GameScreem gameEnd={GameEnd} categorySelected={categorySelected} wordSelected={wordSelected} />}
+        
+        {/* ====== TELA DE JOGO ====== */}
+        {gameStage === 'game' && <GameScreem gameEnd={GameEnd} categorySelected={categorySelected} wordSelected={wordSelected} letters={letters} life={life} score={score} time={time} />}
 
       </div>
     </>
