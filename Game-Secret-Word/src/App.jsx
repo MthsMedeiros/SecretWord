@@ -45,6 +45,8 @@ function App() {
     setGameStage(stages[2].name)
   }
 
+  
+
   useEffect(() => {
     if(gameStage !== 'game') return
     
@@ -86,7 +88,7 @@ function App() {
         {gameStage === 'start' && <StartScreem startGame={StartGame} />}
         
         {/* ====== TELA DE JOGO ====== */}
-        {gameStage === 'game' && <GameScreem gameEnd={GameEnd} categorySelected={categorySelected} wordSelected={wordSelected} letters={letters} life={life} score={score} time={time} />}
+        {gameStage === 'game' && <GameScreem gameEnd={GameEnd} categorySelected={categorySelected} wordSelected={wordSelected} letters={letters} life={life} score={score} time={time} setLife={setLife} />}
 
       </div>
     </>
