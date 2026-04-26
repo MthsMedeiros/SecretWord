@@ -245,6 +245,7 @@ const GameScreem = ({ categorySelected, wordSelected, letters, life, score, time
                   className='border-3 rounded-lg border-[#eceafe] rounded-base bg-white w-10'
                   value={letter}
                   onChange={(e) => setLetter(e.target.value)}
+                  required
                 />
                 
                 {/* 
@@ -252,6 +253,7 @@ const GameScreem = ({ categorySelected, wordSelected, letters, life, score, time
                   Ao clicar, dispara o handleSubmit que verifica a letra
                 */}
                 <input
+                id='btn-Enviar'
                   type="submit"
                   className='mb-5 w-50 bg-[#4f39f6] text-[white] cursor-pointer uppercase px-4 py-2 rounded-[5px] border-[none] hover:bg-[#615fff] hover:scale-110 transition duration-150 ease-in-out'
                 />

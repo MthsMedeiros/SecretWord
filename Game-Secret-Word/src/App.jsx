@@ -54,6 +54,14 @@ function App() {
   function GameEnd() {
     let writeWordSelected = wordSelected.split("")
     let countWordSelected = wordSelected.length
+    let btnEnviar = document.getElementById("btn-Enviar")
+    let inptLetter = document.getElementById("input-letter")
+    if (inptLetter) {
+      inptLetter.disabled = true
+    }
+    if (btnEnviar) {
+      btnEnviar.disabled = true
+    }
 
     for (let i = 0; i < countWordSelected; i++) {
       let element = document.getElementById(`letter-${i}`)
@@ -69,7 +77,7 @@ function App() {
       }
       setInterval(() => {
         setGameStage(stages[2].name)
-      }, 4000);
+      }, 5000);
       
     }
   }
@@ -88,7 +96,12 @@ function App() {
             GameEnd()
             return 0
           }
-          return prevTime - 1
+          if (life <= 0 || time <= 0){
+            return () => clearInterval(timer)
+          }else{
+            
+            return prevTime - 1
+          }
         })
       }, 1000)
 
